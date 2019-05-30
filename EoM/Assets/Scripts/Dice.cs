@@ -8,7 +8,7 @@ public class Dice : MonoBehaviour {
     private SpriteRenderer rend;                        // Reference to sprite renderer to change sprites
     public GameControl controller;
     public FollowThePath move;
-	
+	public PlayerAttributes changeAttributes;
     
     private void Start ()                               // Use this for initialization
 	{
@@ -46,6 +46,7 @@ public class Dice : MonoBehaviour {
 
         Debug.Log(finalSide);                           // Show final dice value in Console
         controller.MovePlayer();
+        changeAttributes.updateAttributes();
 
     }
 }

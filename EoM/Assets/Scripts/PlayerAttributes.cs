@@ -16,6 +16,68 @@ public class PlayerAttributes : MonoBehaviour
         capital=100;
         network=100;
     }
+    private IEnumerator someDelay(){
+        yield return new WaitForSeconds(1.5f);
+        print("ddfgf");
+
+        //Meeting
+        if (blankPosition.finalSide==2)
+            {
+                enthusiasm+=-20;
+                capital+=10;
+                network+=0;
+                Debug.Log("Card drawn = "+blankPosition.finalSide);
+            }
+
+        //Party
+        if (blankPosition.finalSide==3)
+        {
+            enthusiasm+=30;
+            capital+=0;
+            network+=-30;
+            Debug.Log("Card drawn = "+blankPosition.finalSide);
+        }
+
+        //Leave
+        if (blankPosition.finalSide==5)
+        {
+            enthusiasm+=20;
+            capital+=-20;
+            network+=0;
+            Debug.Log("Card drawn = "+blankPosition.finalSide);
+        }
+
+        //Bonus
+        if (blankPosition.finalSide==6)
+        {
+            enthusiasm+=30;
+            capital+=0;
+            network+=30;
+            Debug.Log("Card drawn = "+blankPosition.finalSide);
+        }
+
+        //Break
+        if (blankPosition.finalSide==7)
+        {
+            enthusiasm+=10;
+            capital+=0;
+            network+=-20;
+            Debug.Log("Card drawn = "+blankPosition.finalSide);
+        }
+
+        //Promotion
+        if (blankPosition.finalSide==8)
+        {
+            enthusiasm+=20;
+            capital+=20;
+            network+=0;
+            Debug.Log("Card drawn = "+blankPosition.finalSide);
+        }
+        Debug.Log(enthusiasm);
+        Debug.Log(capital);
+        Debug.Log(network);
+
+    }
 
     // Update is called once per frame
     public void updateAttributes()
@@ -83,60 +145,9 @@ public class PlayerAttributes : MonoBehaviour
         || position.waypointIndex==24 || position.waypointIndex==30 || position.waypointIndex==32 || position.waypointIndex==34)
         {
             blankPosition.ShuffleCard();
-            print("ddfgf");
+            StartCoroutine("someDelay");
             //Meeting
-            if (blankPosition.finalSide==2)
-            {
-                enthusiasm+=-20;
-                capital+=10;
-                network+=0;
-                Debug.Log("Card drawn = "+blankPosition.finalSide);
-            }
-
-            //Party
-            if (blankPosition.finalSide==3)
-            {
-                enthusiasm+=30;
-                capital+=0;
-                network+=-30;
-                Debug.Log("Card drawn = "+blankPosition.finalSide);
-            }
-
-            //Leave
-            if (blankPosition.finalSide==5)
-            {
-                enthusiasm+=20;
-                capital+=-20;
-                network+=0;
-                Debug.Log("Card drawn = "+blankPosition.finalSide);
-            }
-
-            //Bonus
-            if (blankPosition.finalSide==6)
-            {
-                enthusiasm+=30;
-                capital+=0;
-                network+=30;
-                Debug.Log("Card drawn = "+blankPosition.finalSide);
-            }
-
-            //Break
-            if (blankPosition.finalSide==7)
-            {
-                enthusiasm+=10;
-                capital+=0;
-                network+=-20;
-                Debug.Log("Card drawn = "+blankPosition.finalSide);
-            }
-
-            //Promotion
-            if (blankPosition.finalSide==8)
-            {
-                enthusiasm+=20;
-                capital+=20;
-                network+=0;
-                Debug.Log("Card drawn = "+blankPosition.finalSide);
-            }
+            
         }
 
         Debug.Log(enthusiasm);

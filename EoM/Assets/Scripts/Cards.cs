@@ -33,10 +33,7 @@ public class Cards : MonoBehaviour {
         // before final side appears. 20 itterations here.
         // Assigning final side so you can use this value later in your game
         // for player movement for example
-        finalSide = randomCardSide + 1;
-      
-        // Show final dice value in Console
-        Debug.Log("Card selected = "+finalSide);
+        
     }
 
     private IEnumerator cardAnimation()
@@ -53,5 +50,7 @@ public class Cards : MonoBehaviour {
             // Pause before next itteration
             yield return new WaitForSeconds(0.05f);   
         }
+        finalSide = randomCardSide + 1;
+        Debug.Log("Card selected = "+finalSide);
     }
 }

@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSideThrown: 0
+  finalSide: 0
 --- !u!212 &56048005
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -480,6 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {fileID: 1564919799}
+  blankPosition: {fileID: 56048004}
 --- !u!4 &142458175
 Transform:
   m_ObjectHideFlags: 0
@@ -1963,6 +1965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {fileID: 1564919799}
+  blankPosition: {fileID: 0}
 --- !u!1 &1577292084
 GameObject:
   m_ObjectHideFlags: 0

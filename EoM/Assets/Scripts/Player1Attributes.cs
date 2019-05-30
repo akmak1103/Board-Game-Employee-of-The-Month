@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttributes : MonoBehaviour
+public class Player1Attributes : MonoBehaviour
 {
-    int enthusiasm;
-    int capital;
-    int network;
+    public int enthusiasm;
+    public int capital;
+    public int network;
     public FollowThePath position;
     public Cards blankPosition;
     // Start is called before the first frame update
@@ -18,7 +18,6 @@ public class PlayerAttributes : MonoBehaviour
     }
     private IEnumerator someDelay(){
         yield return new WaitForSeconds(1.5f);
-        print("ddfgf");
 
         //Meeting
         if (blankPosition.finalSide==2)
@@ -73,9 +72,6 @@ public class PlayerAttributes : MonoBehaviour
             network+=0;
             Debug.Log("Card drawn = "+blankPosition.finalSide);
         }
-        Debug.Log(enthusiasm);
-        Debug.Log(capital);
-        Debug.Log(network);
 
     }
 
@@ -149,9 +145,5 @@ public class PlayerAttributes : MonoBehaviour
             //Meeting
             
         }
-
-        Debug.Log(enthusiasm);
-        Debug.Log(capital);
-        Debug.Log(network);
     }
 }

@@ -7,8 +7,8 @@ public class Dice : MonoBehaviour {
     private Sprite[] diceSides;                         // Array of dice sides sprites to load from Resources folder
     private SpriteRenderer rend;                        // Reference to sprite renderer to change sprites
     public GameControl controller;
-    public FollowThePath move;
-	public PlayerAttributes changeAttributes;
+	public Player1Attributes changeAttributesOf1;
+    public Player2Attributes changeAttributesOf2;
     
     private void Start ()                               // Use this for initialization
 	{
@@ -45,8 +45,28 @@ public class Dice : MonoBehaviour {
         controller.diceSideThrown = finalSide;          // Assigning final side
 
         Debug.Log(finalSide);                           // Show final dice value in Console
-        controller.MovePlayer();
-        changeAttributes.updateAttributes();
 
+
+        if (controller.turn==1)
+        {
+            controller.MovePlayer1();
+            changeAttributesOf1.updateAttributes();
+        }
+
+        else if (controller.turn==2)
+        {
+            controller.MovePlayer2();
+            changeAttributesOf2.updateAttributes();
+        }
+
+
+        if (controller.turn==2)
+        {
+            controller.turn=1;
+        }
+        else if (controller.turn==1)
+        {
+            controller.turn=2;
+        }
     }
 }

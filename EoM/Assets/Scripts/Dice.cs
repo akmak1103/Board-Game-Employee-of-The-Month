@@ -36,7 +36,7 @@ public class Dice : MonoBehaviour {
     
         for (int i = 0; i <= 20; i++)       // Loop to switch dice sides ramdomly
         {
-            randomDiceSide = Random.Range(0, 5);            // Pick up random value from 0 to 5 (All inclusive)
+            randomDiceSide = Random.Range(0, 6);            // Pick up random value from 0 to 5 (All inclusive)
             rend.sprite = diceSides[randomDiceSide];        // Set sprite to upper face of dice from array according to random value
             yield return new WaitForSeconds(0.05f);         // Pause before next itteration
         }

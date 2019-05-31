@@ -8,6 +8,8 @@ public class Cards : MonoBehaviour {
     int randomCardSide;
     public int cardSideThrown=0;
 
+    AudioSource audioData;
+
     // Reference to sprite renderer to change sprites
     private SpriteRenderer rend;
     public int finalSide = 0;
@@ -17,6 +19,8 @@ public class Cards : MonoBehaviour {
 
         // Assign Renderer component
         rend = GetComponent<SpriteRenderer>();
+
+        audioData = GetComponent<AudioSource>();
 
         // Load dice sides sprites to array from DiceSides subfolder of Resources folder
         cardSides = Resources.LoadAll<Sprite>("Cards/");
@@ -38,11 +42,12 @@ public class Cards : MonoBehaviour {
 
     private IEnumerator cardAnimation()
     {
+        audioData.Play();
         randomCardSide = 0;
         for (int i = 0; i <= 20; i++)
         {
             // Pick up random value from 0 to 7 (All inclusive)
-            randomCardSide = Random.Range(0, 7);
+            randomCardSide = Random.Range(0, 8);
 
             // Set sprite to upper face of dice from array according to random value
             rend.sprite = cardSides[randomCardSide];
@@ -51,6 +56,6 @@ public class Cards : MonoBehaviour {
             yield return new WaitForSeconds(0.05f);   
         }
         finalSide = randomCardSide + 1;
-        Debug.Log("Card selected = "+finalSide);
+        //Debug.Log("Card selected = "+finalSide);
     }
 }

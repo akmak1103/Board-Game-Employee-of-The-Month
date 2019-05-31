@@ -9,11 +9,15 @@ public class Dice : MonoBehaviour {
     public GameControl controller;
 	public Player1Attributes changeAttributesOf1;
     public Player2Attributes changeAttributesOf2;
-    
+    public int finalSide;
+
+    public AudioSource diceMove,playerMove;
+
     private void Start ()                               // Use this for initialization
 	{
         rend = GetComponent<SpriteRenderer>();          // Assign Renderer component
         diceSides = Resources.LoadAll<Sprite>("DiceSides/");        // Load dice sides sprites to array from DiceSides subfolder of Resources folder
+        finalSide=0;
     }
 	
     
@@ -22,6 +26,7 @@ public class Dice : MonoBehaviour {
     // If you left click over the dice then RollTheDice coroutine is started
     private void OnMouseDown()
     {
+        diceMove.Play();
         StartCoroutine("RollTheDice");
     }
 
@@ -32,7 +37,7 @@ public class Dice : MonoBehaviour {
     {
         //Debug.Log("sds");
         int randomDiceSide = 0;             // Variable to contain random dice side number
-        int finalSide = 0;                  // Final side or value that dice reads in the end of coroutine
+                                          // Final side or value that dice reads in the end of coroutine
     
         for (int i = 0; i <= 20; i++)       // Loop to switch dice sides ramdomly
         {
@@ -44,29 +49,34 @@ public class Dice : MonoBehaviour {
         finalSide = randomDiceSide + 1;
         controller.diceSideThrown = finalSide;          // Assigning final side
 
-        Debug.Log(finalSide);                           // Show final dice value in Console
 
 
         if (controller.turn==1)
         {
+            //Debug.Log("Inside Turn 1");
+            
             controller.MovePlayer1();
-            changeAttributesOf1.updateAttributes();
+            if (controller.p1didNotMove==false)
+            {
+                playerMove.Play();
+                changeAttributesOf1.updateAttributes();
+            }
+            controller.turn=2;
+            //Debug.Log("Turn changed after updating");
         }
 
         else if (controller.turn==2)
         {
+            //Debug.Log("Inside turn 2");
+            
             controller.MovePlayer2();
-            changeAttributesOf2.updateAttributes();
-        }
-
-
-        if (controller.turn==2)
-        {
+            if (controller.p2didNotMove==false)
+            {
+                playerMove.Play();
+                changeAttributesOf2.updateAttributes();
+            }
             controller.turn=1;
-        }
-        else if (controller.turn==1)
-        {
-            controller.turn=2;
+            //Debug.Log("Turn changed after updating");
         }
     }
 }

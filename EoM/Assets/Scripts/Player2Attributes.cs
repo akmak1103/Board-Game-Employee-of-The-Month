@@ -7,8 +7,11 @@ public class Player2Attributes : MonoBehaviour
     public int enthusiasm;
     public int capital;
     public int network;
-    public FollowThePath position;
+    public FollowThePath2 position;
+    public FollowThePath1 opponentPosition;
     public Cards blankPosition;
+    public Player1Attributes opponent;
+    public GameControl start;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,58 +24,78 @@ public class Player2Attributes : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
+        //Power of Attorney
+        if (blankPosition.finalSide==1)
+        {
+            start.isStartingP2 = true;
+            opponent.enthusiasm=100;
+            opponent.network=100;
+            opponent.capital=100;
+            opponentPosition.waypointIndex=0;
+
+        }
         //Meeting
         if (blankPosition.finalSide==2)
             {
                 enthusiasm+=-20;
-                capital+=10;
-                network+=0;
-                Debug.Log("Card drawn = "+blankPosition.finalSide);
+                capital+=0;
+                network+=10;
+                //Debug.Log("Card drawn = "+blankPosition.finalSide);
             }
 
         //Party
         if (blankPosition.finalSide==3)
         {
             enthusiasm+=30;
-            capital+=0;
-            network+=-30;
-            Debug.Log("Card drawn = "+blankPosition.finalSide);
+            capital+=-30;
+            network+=0;
+            //Debug.Log("Card drawn = "+blankPosition.finalSide);
         }
+
+        //Rumour
+        if (blankPosition.finalSide==4)
+        {
+            opponent.enthusiasm+=-20;
+            opponent.capital+=0;
+            opponent.network+=-20;
+            //Debug.Log("Card drawn = "+blankPosition.finalSide);
+        }
+
 
         //Leave
         if (blankPosition.finalSide==5)
         {
             enthusiasm+=20;
-            capital+=-20;
-            network+=0;
-            Debug.Log("Card drawn = "+blankPosition.finalSide);
+            capital+=0;
+            network+=-20;
+            //Debug.Log("Card drawn = "+blankPosition.finalSide);
         }
 
         //Bonus
         if (blankPosition.finalSide==6)
         {
             enthusiasm+=30;
-            capital+=0;
-            network+=30;
-            Debug.Log("Card drawn = "+blankPosition.finalSide);
+            capital+=30;
+            network+=0;
+            //Debug.Log("Card drawn = "+blankPosition.finalSide);
         }
 
         //Break
         if (blankPosition.finalSide==7)
         {
             enthusiasm+=10;
-            capital+=0;
-            network+=-20;
-            Debug.Log("Card drawn = "+blankPosition.finalSide);
+            capital+=-20;
+            network+=0;
+            //Debug.Log("Card drawn = "+blankPosition.finalSide);
         }
 
         //Promotion
         if (blankPosition.finalSide==8)
         {
             enthusiasm+=20;
-            capital+=20;
-            network+=0;
-            Debug.Log("Card drawn = "+blankPosition.finalSide);
+            capital+=0;
+            network+=20;
+            //Debug.Log("Card drawn = "+blankPosition.finalSide);
         }
     }
 
